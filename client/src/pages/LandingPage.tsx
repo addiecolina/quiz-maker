@@ -51,10 +51,6 @@ export function LandingPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
               Create a Quiz
             </h2>
-            <p className="text-gray-600 mb-6">
-              Design and publish your own quiz. Add multiple questions with
-              custom options and answers.
-            </p>
             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
               Get Started
             </button>
@@ -67,8 +63,7 @@ export function LandingPage() {
               Take a Quiz
             </h2>
             <p className="text-gray-600 mb-6">
-              Enter a quiz ID to get started. You'll answer questions and
-              receive instant feedback on your performance.
+              Enter a quiz ID to get started.
             </p>
 
             {/* Input Section */}

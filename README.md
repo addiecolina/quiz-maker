@@ -108,3 +108,4 @@ src/
 
 1. Added a landing page for entry to create or take quiz
 2. Added error logging in api.js (debugged to include code answer as string)
+3. Added custom hook for cheating detection. Answers will be prepended with "Potential cheating took place: [original_answer]".

@@ -5,6 +5,7 @@ import {
   useSubmitAnswer,
   useSubmitAttempt,
 } from "../hooks/useQuizApi";
+import { useCheatingDetection } from "../hooks/useCheatingDetection";
 import { type Question } from "../types";
 
 interface QuizAttemptPageProps {
@@ -291,10 +292,23 @@ function QuestionAnswerForm({
   isLoading,
 }: QuestionAnswerFormProps) {
   const [answer, setAnswer] = useState("");
+  const cheatingDetected = useCheatingDetection({
+    enabled: true,
+  });
 
   const handleQuickSubmit = (value: string) => {
-    setAnswer(value);
-    onSubmit(value);
+    const finalAnswer = cheatingDetected
+      ? `Potential cheating took place: ${value}`
+      : value;
+    setAnswer(finalAnswer);
+    onSubmit(finalAnswer);
+  };
+
+  const handleSubmit = (answerValue: string) => {
+    const finalAnswer = cheatingDetected
+      ? `Potential cheating took place: ${answerValue}`
+      : answerValue;
+    onSubmit(finalAnswer);
   };
 
   if (question.type === "mcq") {
@@ -328,7 +342,7 @@ function QuestionAnswerForm({
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
-          onClick={() => onSubmit(answer)}
+          onClick={() => handleSubmit(answer)}
           disabled={isLoading || !answer.trim()}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 transition"
         >
@@ -349,7 +363,7 @@ function QuestionAnswerForm({
           rows={8}
         />
         <button
-          onClick={() => onSubmit(answer)}
+          onClick={() => handleSubmit(answer)}
           disabled={isLoading || !answer.trim()}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 transition"
         >
