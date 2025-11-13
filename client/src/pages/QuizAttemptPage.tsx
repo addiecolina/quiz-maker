@@ -238,6 +238,7 @@ export function QuizAttemptPage({
             {currentQuestion.prompt}
           </h2>
           <QuestionAnswerForm
+            key={currentQuestion.id}
             question={currentQuestion}
             onSubmit={handleAnswerSubmit}
             isLoading={submitAnswerMutation.isPending}

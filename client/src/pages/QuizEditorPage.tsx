@@ -176,6 +176,16 @@ export function QuizEditorPage({
                       {question.correctAnswer}
                     </div>
                   )}
+                  {question.type === "code" && (
+                    <div className="p-2 rounded bg-green-50 border border-green-300">
+                      <span className="text-green-700 font-semibold">
+                        Answer:{" "}
+                      </span>
+                      <pre className="mt-2 p-2 bg-gray-50 rounded font-mono text-sm overflow-auto">
+                        {question.correctAnswer}
+                      </pre>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
